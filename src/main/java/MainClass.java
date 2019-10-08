@@ -1,6 +1,10 @@
+import org.apache.activemq.ActiveMQConnectionFactory;
+import org.apache.activemq.camel.component.ActiveMQComponent;
 import org.apache.camel.CamelContext;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.impl.DefaultCamelContext;
+
+import static org.apache.camel.component.jms.JmsComponent.jmsComponentAutoAcknowledge;
 
 /**
  * @author samridh
@@ -8,16 +12,27 @@ import org.apache.camel.impl.DefaultCamelContext;
  **/
 public class MainClass {
 
-    public static void main(String[] args) {
-
-        CamelContext context = new DefaultCamelContext();
+    public static void main(String[] args) throws Exception {
+       CamelContext context = new DefaultCamelContext();
 
         try {
-            ProducerTemplate template = context.createProducerTemplate();
+            ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://localhost:61616");
+            context.addComponent("activemq", jmsComponentAutoAcknowledge(connectionFactory));
             context.addRoutes(new CamelRoute());
+            ProducerTemplate template = context.createProducerTemplate();
             context.start();
-            template.sendBody("direct:hello", "Hello World");
+            template.sendBody(CamelRoute.DIRECT_ROUTE_4, "Hello World");
+
+
+
+            Thread.sleep(1000);
+            System.out.println("badiya");
+            Thread.sleep(1000);
+            System.out.println("badiya");
+            Thread.sleep(1000);
+            System.out.println("badiya");
         } catch (Exception e) {
+            System.out.println("FAILED the MAIN camel execution with error : " + e.getMessage());
             e.printStackTrace();
         } finally {
             context.stop();
