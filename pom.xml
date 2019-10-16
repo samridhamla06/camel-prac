@@ -6,28 +6,23 @@
 
     <groupId>com.camel.prac</groupId>
     <artifactId>com.camel.prac</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.1-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-core</artifactId>
-            <version>2.15.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-stream</artifactId>
-            <version>2.15.1</version>
+            <version>2.19.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-jms</artifactId>
-            <version>2.15.1</version>
+            <version>2.19.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-stream</artifactId>
-            <version>2.15.1</version>
+            <version>2.19.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.activemq</groupId>
